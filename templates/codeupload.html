@@ -1,0 +1,19 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Code</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h2>Upload Your Code</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="code">Enter your code:</label><br>
+        <textarea id="code" name="code" rows="10" cols="50" placeholder="Write or paste your code here..."></textarea><br>
+        <input type="file" name="output">
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+    <!-- <select name="STUDENT" id="">
+        <option value="">please select student</option>
+        {% for i in s %}
+        <option value="{{i.id}}">{{i.studentname}}</option>
+       {%endfor%}
+
+    </select> -->
+<p>
+    
+</p>
+    <input type="text" value="{{obj.studentname}}">
+
+        <input type="text" name="mark">
+        <input type="hidden" name="STUDENT" value="{{obj.id}}">
+        <input type="hidden" name="FACULTY" value="{{a.id}}">
+        <button type="submit">Add</button>
+</form>
+</body>
+</html>

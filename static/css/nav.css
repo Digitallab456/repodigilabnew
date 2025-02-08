@@ -1,0 +1,130 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(250deg, #e7d7c9, #d4b2a7);
+    color: #f7f0f0;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    font-size: 20px;
+    z-index: 999;
+}
+
+.navbar .brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navig {
+    display: flex;
+    gap: 20px;
+}
+
+.navig a {
+    color: #e10000;
+    text-decoration: none;
+    padding: 10px;
+    transition: 0.3s ease;
+}
+
+.navig a:hover {
+    background-color: #d21f1f;
+    color: #7fecff;
+    transform: translateY(-5px);
+    border-radius: 100px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Marquee */
+marquee {
+    padding-top: 60px;
+    background-color: bisque;
+    font-size: 24px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    height: 90px;
+}
+
+/* Sidebar (for Student Dashboard) */
+.sidebar {
+    height: 100vh;
+    width: 250px;
+    background-color: #b8d480;
+    padding: 30px 15px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    transition: 0.3s ease;
+    overflow-y: auto;
+    box-shadow: 4px 0px 12px rgba(0, 0, 0, 0.1);
+    z-index: 998;
+}
+
+.sidebar a {
+    display: block;
+    color: rgb(179, 157, 157);
+    text-decoration: none;
+    padding: 15px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: transparent;
+    color: rgb(255, 0, 0);
+}
+
+.sidebar-toggle {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    font-size: 30px;
+    background-color: transparent;
+    border: none;
+}
+
+/* Toggle Icon */
+.toggle-bar {
+    display: none;
+    font-size: 36px;
+    color: #333;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.toggle-bar.open {
+    color: #e10000;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+    padding: 50px;
+    padding-top: 120px;
+    font-size: 18px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #d4b2a7;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+    

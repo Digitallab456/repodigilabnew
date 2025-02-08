@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/nav.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/sid.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="brand">Digital Lab</div>
+            <ul class="navig">
+                <a href="#"><i class="material-icons">manage_accounts</i> Profile</a>
+                <a href="#"><i class="material-icons">help_outline</i> Help</a>
+                <a href="#"><i class="material-icons">logout</i> Logout</a>
+                <a href="Codeupload"><i class="material-icons"></i>Code Upload</a>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Marquee for notifications -->
+    <div class="marquee-container">
+        <marquee behavior="scroll" direction="right" scrollamount="10">Welcome to your Student Dashboard! Stay updated with your tasks.</marquee>
+    </div>
+
+    <!-- Sidebar with Toggle Button -->
+    <button class="toggle-bar" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar">
+        {% for i in b %}
+        <a href="#"><i class="material-icons">{{b.task}}</i> Complaint</a>
+        {% endfor %}
+      
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+        <h1>Welcome, Student!</h1>
+        <p>Here you can track your tasks, view notifications, and manage your profile. This dashboard is designed to help you stay organized and keep up with your work. We hope you find it useful!</p>
+        <p>Keep an eye on your tasks, notifications, and other updates below to make sure you're on top of everything. If you need any assistance, feel free to contact us!</p>
+    </div>
+
+    <!-- Script for Sidebar Toggle -->
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const toggleBtn = document.querySelector('.toggle-bar');
+            sidebar.classList.toggle('open');
+            toggleBtn.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+

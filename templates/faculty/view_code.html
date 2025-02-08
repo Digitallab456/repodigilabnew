@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ <table>
+    <tr>
+    <th>id</th>
+    <th>Task</th>
+    <th>code</th>
+    <th>output</th>
+    </tr>
+    {% for i in obj %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i.taskid.task }}</td>
+        <td>{{ i.code }}</td>
+        <td>{{ i.output }}</td>
+    </tr>
+    {% endfor %}
+ </table>   
+</body>
+</html>

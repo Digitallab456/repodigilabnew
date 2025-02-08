@@ -1,0 +1,103 @@
+{%  load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title> lab </title>
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+   
+    </head>
+
+<body>
+    <div>
+        <form class=" my-container" action="" method="post">
+    
+            {% csrf_token %}
+            <h2 >
+                faculty details
+            
+            </h2>
+     <div class="form-group">        
+    <label>
+        id
+    </label>
+    <input type="text" name="password"/><br>
+     </div>
+     <div class="form-group">
+    <label>
+        
+        Name
+
+    </label>
+    <input type="text" name="name"/><br>
+     </div>
+     <div class="form-group">
+        <label>
+            email
+        </label>
+        <input type="text" name="email">
+    <label>
+        Department
+    </label>
+    <select name="department">
+        <option>
+            bsc computer science
+        </option>
+        <option>
+            bca
+        </option>
+        <option>
+            microbiology
+        </option>
+    </select><br>
+     </div>
+     
+    <label>
+        Subject
+    </label> 
+    <select name="subject">
+        <option>
+            c
+        </option>
+        <option>
+            java
+        </option>
+        <option>
+            php
+        </option>
+        <option>
+            html
+        </option>
+        <option>
+            python
+        </option>
+        </select><br>
+    </select><br>
+     </div>
+     <div class="form-group">
+    <label>
+        Qualification
+
+    </label>
+    <input type=" text" name="qualification"/><br>
+     </div>
+
+     <div class="form-group">
+    <label>
+        Phone Number
+    </label>
+    <input type="text" name="phoneno"/><br>
+     </div>
+     <div class="form-group">
+    <input type="submit"value="submit" class="btn">
+     </div>
+</form>
+</div>
+    
+
+
+    
+</body>
+
+</html>

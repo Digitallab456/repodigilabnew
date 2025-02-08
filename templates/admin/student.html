@@ -1,0 +1,48 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+<body class=" so">
+    <table border="2"  >
+        <tr>
+        <th>Name</th>
+        <th>reg no</th>
+        <th>username</th>
+        <th>department</th>
+        <th>semester </th>
+        <th>address</th>
+        <th>dob</th>
+        <th>phoneno </th>
+        <th><a href="/addstudent">+</a></th>
+        
+
+    
+    
+    </tr>
+    {% for i in val %}
+    <tr>
+        
+        <td>{{i.studentname}}</td>
+        <td>{{i.LOGINID.password}}</td>
+        <td>{{i.LOGINID.username}}</td>
+        <td>{{i.department}}</td>
+        <td>{{i.semester}}</td>
+        <td>{{i.address}}</td>
+        <td>{{i.dob}}</td>
+        <td>{{i.phoneno}}</td>
+        <td>
+            <a href="editstudent/{{i.id}}"><li class="material-icons">edit</li> </a><br>
+            <a href="removestudent/{{i.id}}" onclick="return confirm('are you sure you want to remove this student')"><li class="material-icons">personremove</li> </a>
+            
+        </td>
+    </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks List</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body class="bo">
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Reg No</th>
+                <th>Department</th>
+                <th>Semester</th>
+                <th>Address</th>
+                <th>DOB</th>
+                <th>Phone No</th>
+                <th>Marks</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student_info in student_data %}
+            <tr>
+                <td>{{ student_info.student.studentname }}</td>
+                <td>{{ student_info.student.regno }}</td>
+                <td>{{ student_info.student.department }}</td>
+                <td>{{ student_info.student.semester }}</td>
+                <td>{{ student_info.student.address }}</td>
+                <td>{{ student_info.student.dob }}</td>
+                <td>{{ student_info.student.phoneno }}</td>
+                <td>
+                    {% if student_info.marks %}
+                      
+                            {% for mark in student_info.marks %}
+                               
+                                {{ mark.mark }}
+                               
+                            {% endfor %}
+                        
+                    {% else %}
+                        <p>No marks available</p>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if student_info.can_add_mark %}
+                        <a href="markupload/{{student_info.student.id}}/">
+                            <i class="material-icons">add</i> Add Mark
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
