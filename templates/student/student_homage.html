@@ -17,10 +17,11 @@
         <nav class="navbar">
             <div class="brand">Digital Lab</div>
             <ul class="navig">
-                <a href="#"><i class="material-icons">manage_accounts</i> Profile</a>
-                <a href="#"><i class="material-icons">help_outline</i> Help</a>
-                <a href="#"><i class="material-icons">logout</i> Logout</a>
-                <a href="Codeupload"><i class="material-icons"></i>Code Upload</a>
+                <a href="/student/profile/{{request.session.user_id}}"><i class="material-icons">manage_accounts</i> Profile</a>
+                <a href="/stselect_class1"><i class="material-icons">manage_accounts</i> Timetable</a>
+                <!-- <a href="#"><i class="material-icons">help_outline</i> Help</a> -->
+                <a href="logout"><i class="material-icons">logout</i> Logout</a>
+                <!-- <a href="Codeupload"><i class="material-icons"></i>Code Upload</a> -->
             </ul>
         </nav>
     </header>
@@ -34,7 +35,7 @@
     <button class="toggle-bar" onclick="toggleSidebar()">☰</button>
     <div class="sidebar">
         {% for i in b %}
-        <a href="#"><i class="material-icons">{{b.task}}</i> Complaint</a>
+        <a href="/Codeupload/{{i.id}}"><i class="material-icons"></i>{{i.task}}</a>
         {% endfor %}
       
     </div>

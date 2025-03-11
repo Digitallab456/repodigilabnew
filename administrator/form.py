@@ -41,7 +41,13 @@ class marklistForm(ModelForm):
 class TaskForm(ModelForm):
     class Meta:
         model = taskTable
-        fields = ['facultyid', 'task']
+        fields = ['facultyid', 'task','taskcode']
+
+
+class Taskcodestatusform(ModelForm):
+    class Meta:
+        model = taskTable
+        fields = ['taskcodestatus']
 
 class cForm(ModelForm):
     class Meta:
@@ -51,4 +57,4 @@ class cForm(ModelForm):
 class Uploaded(ModelForm):
     class Meta:
         model = UploadedCode
-        fields = ['code', 'output']
+        fields = ['code', 'output','taskid']

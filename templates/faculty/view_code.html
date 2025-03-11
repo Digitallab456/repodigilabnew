@@ -3,24 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Task Management</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: center;
+        }
+
+        th {
+            background: #4CAF50;
+            color: white;
+            font-size: 18px;
+        }
+
+        td {
+            font-size: 16px;
+            color: #555;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+            transition: 0.3s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 15px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
- <table>
-    <tr>
-    <th>id</th>
-    <th>Task</th>
-    <th>code</th>
-    <th>output</th>
-    </tr>
-    {% for i in obj %}
-    <tr>
-        <td>{{ forloop.counter }}</td>
-        <td>{{ i.taskid.task }}</td>
-        <td>{{ i.code }}</td>
-        <td>{{ i.output }}</td>
-    </tr>
-    {% endfor %}
- </table>   
+    <div class="container">
+        <h2>Task Management</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Task</th>
+                    <th>Code</th>
+                    <th>Output</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in obj %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ i.taskid.task }}</td>
+                    <td>{{ i.code }}</td>
+                    <td><a href="{{i.output.url}}">view</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

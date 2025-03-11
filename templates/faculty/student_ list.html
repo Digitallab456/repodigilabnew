@@ -1,38 +1,98 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Student Details</title>
 
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        table {
+            width: 90%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        td {
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+            transition: 0.3s ease-in-out;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
 </head>
-<body class=" bo">
-    <table border="2"  >
+<body>
+
+<div class="container">
+    <table border="0">
         <tr>
-        <th>id</th>
-        <th>Name</th>
-        <th>reg no</th>
-        <th>department</th>
-        <th>semester </th>
-        <th>address</th>
-        <th>dob</th>
-        <th>ph no</th>
-    
-    
-    </tr>
-    {% for i in farhana %}
-    <tr>
-        <td>{{ forloop.counter}}</td>
-        <td>{{ i.studentname}}</td>
-        <td>{{i.regno}}</td>
-        <td>{{i.department}}</td>
-        <td>{{i.semester}}</td>
-        <td>{{i.address}}</td>
-        <td>{{i.dob}}</td>
-        <td>{{i.phoneno}}</td>
-    </tr>
-    {%endfor%}
+            <th>ID</th>
+            <th>Name</th>
+            <th>Reg No</th>
+            <th>Department</th>
+            <th>Semester</th>
+            <th>Address</th>
+            <th>DOB</th>
+            <th>Phone No</th>
+        </tr>
+        {% for i in farhana %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.studentname }}</td>
+            <td>{{ i.regno }}</td>
+            <td>{{ i.department }}</td>
+            <td>{{ i.semester }}</td>
+            <td>{{ i.address }}</td>
+            <td>{{ i.dob }}</td>
+            <td>{{ i.phoneno }}</td>
+        </tr>
+        {% endfor %}
     </table>
+</div>
+
 </body>
 </html>

@@ -108,10 +108,11 @@ class marklistTable(models.Model):
 class taskTable(models.Model):  
     facultyid=models.ForeignKey(facultyTable,on_delete=models.CASCADE)
     task=models.CharField(max_length=100, null=True,blank=True)
-
+    taskcode=models.TextField(null=True,blank=True)
+    taskcodestatus=models.CharField(max_length=100, null=True,blank=True,default='accept')
 
 class UploadedCode(models.Model):
-    taskid=models.ForeignKey(taskTable,on_delete=models.CASCADE)
+    taskid=models.ForeignKey(taskTable,on_delete=models.CASCADE,null=True,blank=True)
     code = models.TextField()
     uploaded_at = models.DateTimeField(auto_now_add=True)
     output = models.FileField(upload_to='output/', null=True, blank=True)

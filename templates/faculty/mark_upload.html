@@ -2,30 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Entry</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 320px;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .form-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .form-container input[type="text"]:focus {
+            border-color: #6e8efb;
+            outline: none;
+            box-shadow: 0 0 8px rgba(110, 142, 251, 0.5);
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .form-container button:hover {
+            background: linear-gradient(135deg, #5b77e2, #925ccf);
+        }
+    </style>
 </head>
 <body>
-    <form action="" method="post">
-        {% csrf_token %}
-    <!-- <select name="STUDENT" id="">
-        <option value="">please select student</option>
-        {% for i in s %}
-        <option value="{{i.id}}">{{i.studentname}}</option>
-       {%endfor%}
 
-    </select> -->
-<p>
-    
-</p>
-    <input type="text" value="{{obj.studentname}}">
+    <div class="form-container">
+        <h2>Enter Marks</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" value="{{ obj.studentname }}" disabled>
+            <input type="text" name="mark" placeholder="Enter Marks" required>
+            <input type="hidden" name="STUDENT" value="{{ obj.id }}">
+            <input type="hidden" name="FACULTY" value="{{ a.id }}">
+            <button type="submit">Add</button>
+        </form>
+    </div>
 
-        <input type="text" name="mark">
-        <input type="hidden" name="STUDENT" value="{{obj.id}}">
-        <input type="hidden" name="FACULTY" value="{{a.id}}">
-        <button type="submit">Add</button>
-</form>
 </body>
 </html>

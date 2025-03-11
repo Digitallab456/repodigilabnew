@@ -4,121 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complaint Management</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
-        /* Basic reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+        body {
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
 
-table {
-    width: 80%;
-    margin: 20px;
-    border-collapse: collapse;
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
 
-th, td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
+        /* Add Complaint Button */
+        a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
 
-th {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 18px;
-}
+        a:hover {
+            background: linear-gradient(135deg, #ff5b7f, #ff6b9c);
+        }
 
-td {
-    font-size: 16px;
-    color: #555;
-}
+        .material-icons {
+            font-size: 22px;
+            margin-right: 8px;
+        }
 
-tr:hover {
-    background-color: #f1f1f1;
-}
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-a {
-    text-decoration: none;
-    color: #fff;
-    background-color: #4CAF50;
-    padding: 10px 20px;
-    border-radius: 5px;
-    display: inline-block;
-    margin-top: 20px;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
-}
+        th, td {
+            padding: 14px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
 
-a:hover {
-    background-color: #45a049;
-}
+        th {
+            background: #4CAF50;
+            color: white;
+            font-size: 18px;
+        }
 
-.material-icons {
-    vertical-align: middle;
-    font-size: 24px;
-}
+        td {
+            font-size: 16px;
+            color: #555;
+        }
 
-.bo {
-    background-color: #f4f4f9;
-}
+        tr:hover {
+            background: #f8f8f8;
+            transition: 0.3s;
+        }
 
-.dot {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
 
+            .container {
+                width: 100%;
+                padding: 15px;
+            }
 
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
     </style>
 </head>
-<body class="bo">
+<body>
     <div class="container">
         <a href="postcomplaint">
-            <li class="material-icons">add</li> Add Complaint
+            <span class="material-icons">add</span> Add Complaint
         </a>
-        <table border="2" class="dot">
+        <table>
             <thead>
                 <tr>
                     <th>Complaint</th>
                     <th>Date</th>
-                  
                     <th>Reply</th>
                 </tr>
             </thead>
             <tbody>
                 {% for i in val %}
-                <tr> 
-                   
+                <tr>
                     <td>{{ i.complaint }}</td>
                     <td>{{ i.date }}</td>
                     <td>{{ i.reply }}</td>
                 </tr>
-                {% endfor %}        
+                {% endfor %}
             </tbody>
         </table>
-        
-
     </div>
 </body>
 </html>

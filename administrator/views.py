@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.views import View
 
@@ -10,6 +10,44 @@ from.models import *
 
  
 # ///////////////////////////////////// admin////////////////////////////
+
+
+# views.py
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.views import View
+
+class ForgotPasswordView(View):
+    def get(self, request, *args, **kwargs):
+
+        return render(request, 'admin/forgot_password.html')
+
+    def post(self, request, *args, **kwargs):
+
+
+            email = request.POST.get('email')
+            
+            try:
+                user = logintable.objects.get(username=email)  # Fetch user based on email
+                user_password = user.password  # Get the password hash (you won't send plain password)
+                
+                # You should ideally send a password reset link instead of the plain password
+                subject = "Password Reset"
+                message = f"Your password is: {user_password}"  # This is just an example; sending the plain password is not recommended
+                from_email = "no-reply@yourdomain.com"
+                recipient_list = [email]
+                
+                send_mail(subject, message, from_email, recipient_list)
+                messages.success(request, "Your password has been sent to your email.")
+                return HttpResponse('''<script>alert("password sent to your email");window.location="/"</script>''')
+ # Redirect to the login page
+
+            except logintable.DoesNotExist:
+                return HttpResponse('''<script>alert("email doesnt exist");window.location="/"</script>''')
+
+
 class LoginPage(View):
     def get(self, request):
         return render(request, "admin/login_page.html")
@@ -204,7 +242,11 @@ class select_class1(View):
     def get(self, request):
         obj = Class.objects.all()
         return render(request, "admin/select_class1.html", {'obj': obj})
-                  
+class stselect_class1(View):
+    def get(self, request):
+        obj = Class.objects.all()
+        return render(request, "student/select_class1.html", {'obj': obj})
+                                   
 class view_timetable(View):
     def post(self, request):
         class_id=request.POST['class_id']
@@ -213,6 +255,14 @@ class view_timetable(View):
         # Render the timetable in a template
         return render(request, 'admin/timetable.html', {'timetable_entries': timetable_entries})  
       #////////////////////////// faculty///////////////////////////
+
+class stview_timetable(View):
+    def post(self, request):
+        class_id=request.POST['class_id']
+        # Query all timetable entries from the database
+        timetable_entries = Timetable.objects.filter(CLASS_id=class_id).order_by('day')
+        # Render the timetable in a template
+        return render(request, 'student/timetable.html', {'timetable_entries': timetable_entries})  
 class editpage(View):
     def get(self,request):
         
@@ -288,7 +338,7 @@ class logout(View):
 class viewcomplaint(View):
     def get(self,request):
         c= complaintTable.objects.all()
-        return render(request,"faculty/complaint.html",{'a':c})
+        return render(request,"faculty/f_reply.html",{'a':c})
     
 class task(View):
    def get(self,request):
@@ -310,11 +360,30 @@ class taskedit(View):
         c = taskTable.objects.get(id=id)
         return render(request,"faculty/taskedit.html",{'s':c})
     def post(self,request,id):
+        print(request.POST['task'])
         c = taskTable.objects.get(id=id)
         form = TaskForm(request.POST,instance=c)
         if form.is_valid():
+            print(request.POST['task'])
             form.save()
-            return HttpResponse('''<script>alert("task updated successfully");window.location="/taskman"</script''')
+            return HttpResponse('''<script>alert("task updated successfully");window.location="/taskman"</script>''')
+
+class taskcodestatusaccept(View):
+    def get(self,request,id):
+        c = taskTable.objects.get(id=id)
+        c.status = 'accept'
+        c.save()
+        return HttpResponse('''<script>alert("task code status updated successfully");window.location="/taskman"</script>''')
+
+
+
+class taskcodestatusreject(View):
+    def get(self,request,id):
+        c = taskTable.objects.get(id=id)
+        c.status = 'reject'
+        c.save()
+        return HttpResponse('''<script>alert("task code status updated successfully");window.location="/taskman"</script>''')
+
 class taskdelete(View):
     def get(self,request,id):
         c = taskTable.objects.get(id=id)
@@ -408,18 +477,33 @@ class insert_timetable(View):
 
 
 class Codeupload(View):
-    def get(self,request):
-        return render(request,"codeupload.html")
-    def post(self, request):
+    def get(self,request,id):
+        ta=taskTable.objects.filter(id=id).first()
+        return render(request,"codeupload.html",{'ta':ta})
+    def post(self, request,id):
         c = Uploaded(request.POST, request.FILES)
         if c.is_valid():
             c.save()
-            return HttpResponse('''<script>alert('code added successfully');window.location='/Codeupload'</script>''')
+            return HttpResponse('''<script>alert('code added successfully');window.location='/studenthomepage'</script>''')
         
 
 class view_code(View):
     def get(self,request):
         obj= UploadedCode.objects.filter(taskid__facultyid__LOGIN_id=request.session['user_id'])
+        print(obj)
         return render(request,"faculty/view_code.html", {'obj':obj})
     
-    
+
+
+class ViewTaskCode(View):
+    def get(self, request):
+        task_id = request.GET.get('taskid')  # Get task ID from request
+        task = get_object_or_404(taskTable, id=task_id)
+        return JsonResponse({'taskcode': task.taskcode}) 
+
+class StudentProfileView(View):
+    template_name = 'student/student_profile.html'
+
+    def get(self, request, student_id):
+        student = get_object_or_404(StudentTable, LOGINID__id=student_id)
+        return render(request, self.template_name, {'student': student})
